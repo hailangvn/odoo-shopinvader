@@ -13,9 +13,7 @@ class ShopinvaderProduct(models.Model):
         # to the parent category to preserve SEO links.
         # Moreover, this makes the index record size grow
         # which is not nice (especially w/ Algolia that has a limited size).
-        to_not_redirect = self.filtered(
-            lambda x: x.manufactured_for_partner_ids
-        )
+        to_not_redirect = self.filtered(lambda x: x.manufactured_for_partner_ids)
         return super(
             ShopinvaderProduct, self - to_not_redirect
         )._redirect_existing_url()

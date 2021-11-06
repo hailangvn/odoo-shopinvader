@@ -4,15 +4,14 @@
 from psycopg2.extensions import AsIs
 
 from odoo import models
+
 from odoo.addons.base_sparse_field.models.fields import Serialized
 
 
 class ShopinvaderVariant(models.Model):
     _inherit = "shopinvader.variant"
 
-    manufactured_for_partners = Serialized(
-        compute="_compute_manufactured_for_partners"
-    )
+    manufactured_for_partners = Serialized(compute="_compute_manufactured_for_partners")
 
     def _compute_manufactured_for_partners(self):
         pids = self.mapped("product_tmpl_id").ids
